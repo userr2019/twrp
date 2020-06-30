@@ -4,7 +4,7 @@
   "git_username": "userr2019",
   "git_email": "thka2020@qq.com",
   "use_own_dt": true,
-  "dt_url": "https://github.com/TeamWin/android_device_xiaomi_santoni",
+  "dt_url": "TeamWin/android_device_xiaomi_santoni",
   "dt_branch": "android-9.0",
   "dt_path": "device/xiaomi/santoni",
   "dt_remote": "github",
