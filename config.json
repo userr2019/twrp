@@ -10,7 +10,7 @@
   "dt_remote": "github",
   "device_code": "santoni",
   "fix_product": false,
-  "fix_misscom": false,
+  "fix_misscom": true,
   "fix_busybox": true,
   "fix_branch": "android-9.0"
 }
