@@ -79,10 +79,6 @@ jobs:
         cd workspace
         repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
         ls -al
-        echo "=================================="
-        df -h
-        echo "=================================="
-        du -h
     - name: Fix cannot locate product
       if: steps.var.outputs.fix_product == 'true'
       run: |
@@ -98,8 +94,6 @@ jobs:
         source build/envsetup.sh
         lunch omni_${{ steps.var.outputs.device_code }}-eng 
         mka recoveryimage -j$(nproc --all)
-        echo "=================================="
-        du -h
     - name: Upload TWRP
       uses: softprops/action-gh-release@v1
       with:
