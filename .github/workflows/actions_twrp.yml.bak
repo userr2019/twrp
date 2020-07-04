@@ -90,10 +90,8 @@ jobs:
     - name: Start Building
       run: |
         PATH=~/bin:$PATH
-        find -name z.zip
-        echo ${{ steps.pwd.outputs.pwd }}
+        z=workspace/z.zip
         cd ${{ steps.pwd.outputs.pwd }}
-        find -name z.zip
         tree device
         export ALLOW_MISSING_DEPENDENCIES=true
         source build/envsetup.sh
