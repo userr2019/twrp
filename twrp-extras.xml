@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-    <remote name="userr2019"
-            fetch="https://github.com/userr2019"
+    <remote name="git_name"
+            fetch="https://github.com/git_name"
             review="https://gerrit.twrp.me" />
 
 <!-- TWRP lives in TeamWin android-9.0 (not AOSP!) -->
     <remove-project name="platform/bootable/recovery"/>
-    <project path="bootable/recovery" name="android_bootable_recovery" remote="userr2019" revision="android-9.0"/>
+    <project path="bootable/recovery" name="android_bootable_recovery" remote="git_name" revision="android-9.0"/>
 
 <!-- Include external Magisk repo for repack binaries -->
     <project path="external/magisk-prebuilt" name="external_magisk-prebuilt" remote="TeamWin" revision="master" />
