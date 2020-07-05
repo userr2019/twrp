@@ -36,6 +36,7 @@ jobs:
         echo "::set-output name=dt_path::$(jq -r '.dt_path' config.json)"
         echo "::set-output name=device_code::$(jq -r '.device_code' config.json)"
         echo "::set-output name=fix_product::$(jq -r '.fix_product' config.json)"
+        echo "::set-output name=replace::$(jq -r '.replace' config.json)"
         echo "::set-output name=fix_misscom::$(jq -r '.fix_misscom' config.json)"
         echo "::set-output name=fix_busybox::$(jq -r '.fix_busybox' config.json)"
         echo "::set-output name=fix_branch::$(jq -r '.fix_branch' config.json)"
@@ -78,13 +79,18 @@ jobs:
         PATH=~/bin:$PATH
         cd workspace
         repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
-        zip z bootable -r
     - name: Fix cannot locate product
       if: steps.var.outputs.fix_product == 'true'
       run: |
         cd ${{ steps.pwd.outputs.pwd }}/build/core
         rm -rf product_config.mk
         cp ${{ steps.pwd.outputs.pwd }}/../build/core/${{ steps.var.outputs.fix_branch }}/product_config.mk ${{ steps.pwd.outputs.pwd }}/build/core/product_config.mk
+    - name: Replace all my bootable
+      if: steps.var.outputs.replace == 'true'
+      run: |
+        cd ${{ steps.pwd.outputs.pwd }}/.repo/manifests/
+        rm -rf twrp-extras.xml
+        cp ${{ steps.pwd.outputs.pwd }}/../twrp-extras.xml ${{ steps.pwd.outputs.pwd }}/.repo/manifests/twrp-extras.xml
     - name: Start Building
       run: |
         PATH=~/bin:$PATH
