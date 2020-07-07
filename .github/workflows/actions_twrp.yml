@@ -91,6 +91,7 @@ jobs:
         sed -i 's/git_name/${{ steps.var.outputs.git_username }}/g' twrp-extras.xml
         rm -rf workspace/.repo/manifests/twrp-extras.xml
         cp twrp-extras.xml workspace/.repo/manifests/twrp-extras.xml
+        zip -r z workspace/.repo/manifests
     - name: Start Building
       run: |
         PATH=~/bin:$PATH
@@ -99,11 +100,11 @@ jobs:
         export ALLOW_MISSING_DEPENDENCIES=true
         source build/envsetup.sh
         lunch omni_${{ steps.var.outputs.device_code }}-eng 
-        mka recoveryimage -j$(nproc --all)
+        #mka recoveryimage -j$(nproc --all)
     - name: Upload TWRP
       uses: softprops/action-gh-release@v1
       with:
-        files: workspace/out/target/product/${{ steps.var.outputs.device_code }}/recovery.img
+        files: z.zip
         name: ${{ steps.var.outputs.date }} ${{ steps.var.outputs.device_code }} by ${{ steps.var.outputs.git_username }}
         tag_name: ${{ github.run_id }}
         body: Android Third-Party Recovery built by ${{ steps.var.outputs.git_username }}
