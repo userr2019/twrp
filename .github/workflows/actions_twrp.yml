@@ -91,7 +91,7 @@ jobs:
         sed -i 's/git_name/${{ steps.var.outputs.git_username }}/g' twrp-extras.xml
         rm -rf workspace/.repo/manifests/twrp-extras.xml
         cp twrp-extras.xml workspace/.repo/manifests/twrp-extras.xml
-        zip -r z workspace/.repo/manifests
+        zip -r z workspace/.repo/projects/bootable/
     - name: Start Building
       run: |
         PATH=~/bin:$PATH
